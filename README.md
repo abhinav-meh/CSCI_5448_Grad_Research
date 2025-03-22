@@ -1,6 +1,10 @@
-# Project Name
+# CSCI_5448_Grad_Research
 
 This repository contains both Java and p5.js code examples. Below are instructions on how to set up and run both types of code.
+
+## Team Members
+- Abhinav Mehrotra
+- Vishnu Vardhan Mahajan
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
