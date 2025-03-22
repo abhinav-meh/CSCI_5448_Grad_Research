@@ -1,11 +1,120 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>p5.js Sketch</title>
-  <script src="node_modules/p5/lib/p5.js"></script>
-  <script src="sketch.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L-System Generator with p5.js</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+    }
+    
+    #canvas-container {
+      flex: 1;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    #controls {
+      width: 300px;
+      padding: 20px;
+      background-color: #f0f0f0;
+      overflow-y: auto;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+    
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    select, input, textarea, button {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    
+    textarea {
+      height: 100px;
+      font-family: monospace;
+    }
+    
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    
+    button:hover {
+      background-color: #45a049;
+    }
+    
+    .color-picker {
+      display: flex;
+      align-items: center;
+    }
+    
+    .color-picker input[type="color"] {
+      width: 50px;
+      height: 30px;
+      margin-right: 10px;
+    }
+  </style>
 </head>
 <body>
-</body>
-</html>
+  <div id="canvas-container"></div>
+  <div id="controls">
+    <h2>L-System Generator</h2>
+    
+    <label for="preset">Presets:</label>
+    <select id="preset">
+      <option value="plant1">Plant 1</option>
+      <option value="plant2">Plant 2</option>
+      <option value="kochCurve">Koch Curve</option>
+      <option value="sierpinski">Sierpinski Triangle</option>
+      <option value="dragon">Dragon Curve</option>
+      <option value="custom">Custom</option>
+    </select>
+    
+    <label for="axiom">Axiom:</label>
+    <input type="text" id="axiom" value="F">
+    
+    <label for="iterations">Iterations:</label>
+    <input type="number" id="iterations" value="4" min="1" max="7">
+    
+    <label for="angle">Angle (degrees):</label>
+    <input type="number" id="angle" value="25" min="1" max="180">
+    
+    <label for="length">Segment Length:</label>
+    <input type="number" id="length" value="10" min="1" max="50">
+    
+    <label for="rules">Rules (one per line, format: X=YYYY):</label>
+    <textarea id="rules">F=FF+[+F-F-F]-[-F+F+F]</textarea>
+    
+    <div class="color-picker">
+      <input type="color" id="strokeColor" value="#006400">
+      <label for="strokeColor">Stroke Color</label>
+    </div>
+    
+    <div class="color-picker">
+      <input type="color" id="backgroundColor" value="#ffffff">
+      <label for="backgroundColor">Background Color</label>
+    </div>
+    
+    <button id="generate">Generate</button>
+  </div>
+  </body>
+  </html>
